@@ -17,11 +17,8 @@
 --mint:#8eecc4;--mint-soft:rgba(142,236,196,0.08);
 --sky:#8ac4ff;--sky-soft:rgba(138,196,255,0.08);
 --gold:#ffd480;--gold-soft:rgba(255,212,128,0.08);
---ue25:var(--sky);--ue25-bg:var(--sky-soft);
---ue28:var(--coral);--ue28-bg:var(--coral-soft);
---ue211:var(--mint);--ue211-bg:var(--mint-soft);
---ue12:var(--gold);--ue12-bg:var(--gold-soft);
---ue42:var(--lavender);--ue42-bg:var(--lavender-soft);
+--rose:#ff8aaa;
+--ue25:var(--sky);--ue28:var(--coral);--ue211:var(--mint);--ue12:var(--gold);--ue42:var(--lavender);
 --done:#6ee6a8;--done-glow:rgba(110,230,168,0.15);
 --radius:16px;--radius-sm:12px;
 --safe-bottom:env(safe-area-inset-bottom,0px);
@@ -32,17 +29,29 @@ body::before{content:'';position:fixed;top:-200px;right:-200px;width:600px;heigh
 body::after{content:'';position:fixed;bottom:-200px;left:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(196,176,255,0.03)0%,transparent 70%);pointer-events:none;z-index:0}
 .grain{position:fixed;inset:0;opacity:0.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
 .app{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:24px 20px calc(40px + var(--safe-bottom))}
+
+/* ============ GLOBAL NAV ============ */
+.global-nav{display:flex;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:4px;margin-bottom:28px;animation:rise .5s ease both}
+.gn-btn{flex:1;padding:12px 0;border:none;background:transparent;color:var(--text-4);font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;border-radius:var(--radius-sm);transition:all .25s;display:flex;align-items:center;justify-content:center;gap:6px}
+.gn-btn:hover{color:var(--text-3);background:rgba(255,255,255,0.02)}
+.gn-btn.active{color:var(--text);background:var(--bg);box-shadow:0 2px 12px rgba(0,0,0,0.3)}
+.gn-btn svg{width:18px;height:18px}
+.page{display:none}.page.active{display:block;animation:rise .4s ease both}
+
+/* ============ HERO ============ */
 .hero{text-align:center;padding:44px 0 32px;animation:rise .7s cubic-bezier(.22,1,.36,1) both}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--coral);background:var(--coral-soft);border:1px solid rgba(255,155,138,0.12);padding:7px 18px;border-radius:100px;margin-bottom:20px}
 .hero h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,9vw,52px);line-height:1.1;letter-spacing:-.5px;margin-bottom:10px}
 .hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-sub{color:var(--text-3);font-size:14px;max-width:380px;margin:0 auto;line-height:1.7}
-.love-note{margin:20px auto 0;max-width:360px;padding:14px 20px;border-radius:var(--radius-sm);background:linear-gradient(135deg,rgba(255,155,138,0.06),rgba(196,176,255,0.06));border:1px solid rgba(255,155,138,0.08);font-size:13px;color:var(--text-2);line-height:1.7;font-style:italic;text-align:left;animation:rise .7s cubic-bezier(.22,1,.36,1) .15s both}
+.love-note{margin:20px auto 0;max-width:360px;padding:14px 20px;border-radius:var(--radius-sm);background:linear-gradient(135deg,rgba(255,155,138,0.06),rgba(196,176,255,0.06));border:1px solid rgba(255,155,138,0.08);font-size:13px;color:var(--text-2);line-height:1.7;font-style:italic;text-align:left}
 .love-note .sig{display:block;text-align:right;color:var(--coral);font-style:normal;font-weight:700;margin-top:6px;font-size:12px}
-.exam-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:24px;animation:rise .7s cubic-bezier(.22,1,.36,1) .1s both}
+.exam-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:24px}
 .exam-chip{font-size:12px;font-weight:700;padding:8px 16px;border-radius:10px;background:var(--surface);border:1px solid var(--border);color:var(--text-2)}
 .exam-chip b{color:var(--gold)}
-.stats-row{display:flex;align-items:center;justify-content:center;gap:40px;padding:40px 0 28px;animation:rise .7s cubic-bezier(.22,1,.36,1) .15s both;flex-wrap:wrap}
+
+/* ============ STATS ============ */
+.stats-row{display:flex;align-items:center;justify-content:center;gap:40px;padding:40px 0 28px;flex-wrap:wrap}
 .countdown-block{text-align:center}
 .countdown-num{font-family:'Instrument Serif',serif;font-size:56px;line-height:1;background:linear-gradient(135deg,var(--gold),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .countdown-label{font-size:11px;color:var(--text-4);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
@@ -53,37 +62,47 @@ body::after{content:'';position:fixed;bottom:-200px;left:-200px;width:500px;heig
 .ring-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .ring-pct{font-family:'Instrument Serif',serif;font-size:36px;line-height:1}
 .ring-lbl{font-size:10px;color:var(--text-4);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
-.ue-bars{max-width:480px;margin:0 auto 12px;display:flex;flex-direction:column;gap:8px;animation:rise .7s cubic-bezier(.22,1,.36,1) .2s both}
+
+/* ============ UE BARS ============ */
+.ue-bars{max-width:480px;margin:0 auto 12px;display:flex;flex-direction:column;gap:8px}
 .ue-row{display:flex;align-items:center;gap:10px}
 .ue-name{font-size:12px;font-weight:700;min-width:54px;color:var(--text-2)}
 .ue-track{flex:1;height:5px;border-radius:3px;background:var(--border);overflow:hidden}
 .ue-fill{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.22,1,.36,1)}
 .ue-fill.sky{background:var(--sky)}.ue-fill.coral{background:var(--coral)}.ue-fill.mint{background:var(--mint)}.ue-fill.gold{background:var(--gold)}.ue-fill.lavender{background:var(--lavender)}
 .ue-count{font-size:11px;color:var(--text-4);min-width:32px;text-align:right;font-variant-numeric:tabular-nums}
-.moti-banner{text-align:center;padding:16px 24px;margin:8px 0 28px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);font-size:14px;color:var(--text-2);transition:all .5s}
+
+/* ============ MOTI BANNER ============ */
+.moti-banner{text-align:center;padding:16px 24px;margin:8px 0 28px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);font-size:14px;color:var(--text-2)}
 .moti-banner .moti-emoji{font-size:20px;display:block;margin-bottom:4px}
-.week-nav{display:flex;gap:3px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:4px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;animation:rise .6s cubic-bezier(.22,1,.36,1) .25s both}
+
+/* ============ WEEK NAV ============ */
+.week-nav{display:flex;gap:3px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:4px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none}
 .week-nav::-webkit-scrollbar{display:none}
 .wk-btn{flex:1;min-width:max-content;padding:10px 16px;border:none;background:transparent;color:var(--text-4);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border-radius:var(--radius-sm);transition:all .2s;white-space:nowrap}
 .wk-btn:hover{color:var(--text-3);background:rgba(255,255,255,0.02)}
-.wk-btn.active{color:var(--text);background:var(--bg);box-shadow:0 2px 10px rgba(0,0,0,0.25),inset 0 1px 0 rgba(255,255,255,0.03)}
+.wk-btn.active{color:var(--text);background:var(--bg);box-shadow:0 2px 10px rgba(0,0,0,0.25)}
 .wk-btn .wk-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-left:5px;vertical-align:middle;opacity:0;transition:all .4s}
 .wk-btn .wk-dot.done{opacity:1;background:var(--done);box-shadow:0 0 6px var(--done-glow)}
+
+/* ============ WEEK PANEL ============ */
 .wk-panel{display:none}.wk-panel.active{display:block;animation:fadeSlide .35s ease both}
 .wk-head{margin-bottom:16px}
 .wk-head h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:22px}
 .wk-head .wk-focus{font-size:13px;color:var(--text-4)}
 .wk-msg{font-size:13px;color:var(--coral);font-style:italic;margin-bottom:16px;padding:10px 16px;background:var(--coral-soft);border-radius:var(--radius-sm);border-left:3px solid var(--coral)}
+
+/* ============ DAY CARDS ============ */
 .day{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;transition:all .25s;position:relative}
 .day::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
 .day[data-ue="ue25"]::before{background:var(--ue25)}.day[data-ue="ue28"]::before{background:var(--ue28)}.day[data-ue="ue211"]::before{background:var(--ue211)}.day[data-ue="ue12"]::before{background:var(--ue12)}.day[data-ue="ue42"]::before{background:var(--ue42)}.day[data-ue="rest"]::before{background:var(--text-4);opacity:.3}.day[data-ue="revision"]::before{background:var(--lavender);opacity:.5}.day[data-ue="final"]::before{background:var(--gold)}
 .day:hover{border-color:var(--border-h);background:var(--surface-h)}
 .day:not(.rest-day){cursor:pointer}
-.day-row{display:flex;align-items:center;gap:14px;padding:14px 18px;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.day-row{display:flex;align-items:center;gap:14px;padding:14px 18px;user-select:none;-webkit-tap-highlight-color:transparent}
 .chk{width:26px;height:26px;border-radius:8px;border:2px solid var(--border-h);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .35s cubic-bezier(.34,1.56,.64,1)}
 .chk svg{width:14px;height:14px;opacity:0;transform:scale(.3) rotate(-20deg);transition:all .35s cubic-bezier(.34,1.56,.64,1)}
 .day.done .chk{background:var(--done);border-color:var(--done);box-shadow:0 0 16px var(--done-glow)}
-.day.done .chk svg{opacity:1;transform:scale(1) rotate(0deg)}
+.day.done .chk svg{opacity:1;transform:scale(1) rotate(0)}
 .day.done{opacity:.45}.day.done:hover{opacity:.6}
 .day.done .day-topics{text-decoration:line-through;text-decoration-color:var(--text-4)}
 .day-date{min-width:40px;text-align:center;flex-shrink:0}
@@ -96,15 +115,12 @@ body::after{content:'';position:fixed;bottom:-200px;left:-200px;width:500px;heig
 .day-note{font-size:11px;color:var(--text-4);margin-top:2px}
 .day-subs{display:none;padding:0 18px 14px 98px}
 .day.open .day-subs{display:flex;flex-wrap:wrap;gap:6px;animation:fadeSlide .25s ease both}
-.sub-chip{font-size:12px;font-weight:600;padding:6px 14px;border-radius:9px;background:rgba(255,255,255,0.03);border:1px solid var(--border);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.sub-chip{font-size:12px;font-weight:600;padding:6px 14px;border-radius:9px;background:rgba(255,255,255,0.03);border:1px solid var(--border);cursor:pointer;transition:all .2s}
 .sub-chip:hover{background:rgba(255,255,255,0.06)}
 .sub-chip.checked{background:rgba(110,230,168,0.08);border-color:rgba(110,230,168,0.2);color:var(--done)}
 .day.rest-day{opacity:.35}.day.rest-day:hover{opacity:.45}.day.rest-day .chk{display:none}
-.confetti-container{position:fixed;inset:0;pointer-events:none;z-index:10000;overflow:hidden}
-.confetti-piece{position:absolute;width:8px;height:8px;border-radius:2px;animation:confettiFall 2.5s cubic-bezier(.25,.46,.45,.94) forwards}
-@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg) scale(1);opacity:1}100%{transform:translateY(100vh) rotate(720deg) scale(.3);opacity:0}}
-.toast{position:fixed;bottom:calc(30px + var(--safe-bottom));left:50%;transform:translateX(-50%) translateY(100px);padding:14px 24px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--done);box-shadow:0 8px 32px rgba(0,0,0,0.4),0 0 20px var(--done-glow);font-size:14px;font-weight:700;color:var(--done);opacity:0;transition:all .5s cubic-bezier(.22,1,.36,1);z-index:10001;text-align:center;max-width:90vw}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* ============ METHOD SECTION ============ */
 .sec-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:26px;margin:52px 0 4px}
 .sec-title em{font-style:italic;color:var(--sky)}
 .sec-sub{color:var(--text-4);font-size:13px;margin-bottom:20px}
@@ -124,11 +140,136 @@ body::after{content:'';position:fixed;bottom:-200px;left:-200px;width:500px;heig
 .proto-n{min-width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--text-4);flex-shrink:0}
 .footer-love{text-align:center;padding:48px 0 20px;color:var(--text-4);font-size:12px}
 .footer-love .heart{color:var(--coral)}
+
+/* ============ QUIZ PAGE ============ */
+.quiz-hero{text-align:center;padding:36px 0 28px}
+.quiz-hero h1{font-family:'Instrument Serif',serif;font-size:clamp(28px,7vw,40px);font-weight:400;margin-bottom:8px}
+.quiz-hero h1 em{font-style:italic;color:var(--mint)}
+.quiz-hero p{color:var(--text-3);font-size:14px;max-width:400px;margin:0 auto}
+
+/* API KEY INPUT */
+.api-setup{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:24px}
+.api-setup label{font-size:12px;font-weight:700;color:var(--text-3);display:block;margin-bottom:8px}
+.api-row{display:flex;gap:8px}
+.api-input{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;color:var(--text);font-family:'Nunito',sans-serif;font-size:13px;outline:none;transition:border .2s}
+.api-input:focus{border-color:var(--mint)}
+.api-input::placeholder{color:var(--text-4)}
+.btn{padding:10px 20px;border:none;border-radius:var(--radius-sm);font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all .2s}
+.btn-mint{background:var(--mint);color:var(--bg)}
+.btn-mint:hover{box-shadow:0 0 16px rgba(142,236,196,0.2);transform:translateY(-1px)}
+.btn-coral{background:var(--coral);color:var(--bg)}
+.btn-coral:hover{box-shadow:0 0 16px rgba(255,155,138,0.2);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text-2)}
+.btn-ghost:hover{border-color:var(--border-h);background:var(--surface-h)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.api-status{font-size:11px;margin-top:6px;color:var(--text-4)}
+.api-status.ok{color:var(--done)}
+
+/* TEXTAREA INPUT */
+.course-input{margin-bottom:24px}
+.course-input h3{font-family:'Instrument Serif',serif;font-size:20px;font-weight:400;margin-bottom:12px}
+.course-input h3 em{font-style:italic;color:var(--lavender)}
+.course-ta{width:100%;min-height:200px;background:var(--bg);border:2px dashed var(--border);border-radius:var(--radius);padding:16px;color:var(--text);font-family:'Nunito',sans-serif;font-size:13px;line-height:1.6;resize:vertical;outline:none;transition:border .2s}
+.course-ta:focus{border-color:var(--lavender);border-style:solid}
+.course-ta::placeholder{color:var(--text-4)}
+.input-actions{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap}
+.char-count{font-size:11px;color:var(--text-4);margin-left:auto}
+
+/* OBJECTIVES */
+.obj-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:24px;animation:rise .4s ease both}
+.obj-section h3{font-family:'Instrument Serif',serif;font-size:18px;font-weight:400;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.obj-section h3 .obj-icon{font-size:20px}
+.obj-list{display:flex;flex-direction:column;gap:6px}
+.obj-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px}
+.obj-bullet{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.obj-bullet.sky{background:var(--sky)}.obj-bullet.coral{background:var(--coral)}.obj-bullet.mint{background:var(--mint)}.obj-bullet.gold{background:var(--gold)}.obj-bullet.lavender{background:var(--lavender)}.obj-bullet.rose{background:var(--rose)}
+.obj-text{flex:1;color:var(--text-2)}
+
+/* QUIZ DISPLAY */
+.quiz-container{animation:rise .4s ease both}
+.quiz-q{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:12px;transition:all .3s}
+.quiz-q.answered{opacity:.7}
+.quiz-q.correct{border-color:var(--done)}
+.quiz-q.wrong{border-color:var(--coral)}
+.quiz-q-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.quiz-q-num{font-family:'Instrument Serif',serif;font-size:24px;color:var(--text-4);flex-shrink:0;min-width:32px}
+.quiz-q-body{flex:1}
+.quiz-q-obj{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--lavender);margin-bottom:4px}
+.quiz-q-text{font-size:15px;font-weight:600;line-height:1.5}
+
+/* MCQ choices */
+.quiz-choices{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.quiz-choice{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;font-size:14px}
+.quiz-choice:hover{border-color:var(--border-h);background:var(--surface-h)}
+.quiz-choice.selected{border-color:var(--sky);background:var(--sky-soft)}
+.quiz-choice.correct-reveal{border-color:var(--done);background:rgba(110,230,168,0.08)}
+.quiz-choice.wrong-reveal{border-color:var(--coral);background:var(--coral-soft)}
+.quiz-choice-letter{width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--text-3);flex-shrink:0}
+
+/* Open question */
+.quiz-open-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;color:var(--text);font-family:'Nunito',sans-serif;font-size:14px;outline:none;margin-top:12px;resize:vertical;min-height:80px;transition:border .2s}
+.quiz-open-input:focus{border-color:var(--lavender)}
+
+/* Explanation */
+.quiz-explain{margin-top:12px;padding:12px 16px;border-radius:var(--radius-sm);font-size:13px;line-height:1.6;color:var(--text-2);animation:fadeSlide .3s ease both}
+.quiz-explain.correct-bg{background:rgba(110,230,168,0.06);border-left:3px solid var(--done)}
+.quiz-explain.wrong-bg{background:var(--coral-soft);border-left:3px solid var(--coral)}
+
+/* RESULTS */
+.results-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;text-align:center;margin-bottom:24px;animation:rise .5s ease both}
+.results-score{font-family:'Instrument Serif',serif;font-size:64px;line-height:1}
+.results-score.great{background:linear-gradient(135deg,var(--mint),var(--sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.results-score.ok{background:linear-gradient(135deg,var(--gold),var(--peach));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.results-score.needs-work{background:linear-gradient(135deg,var(--coral),var(--rose));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.results-label{font-size:14px;color:var(--text-3);margin-top:4px}
+.results-msg{font-size:16px;font-weight:700;margin-top:12px;color:var(--text)}
+.obj-results{margin-top:20px;display:flex;flex-direction:column;gap:8px;text-align:left}
+.obj-result{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg);border-radius:var(--radius-sm);font-size:13px}
+.obj-result-icon{font-size:16px;flex-shrink:0}
+.obj-result-text{flex:1;color:var(--text-2)}
+.obj-result-score{font-weight:800;font-size:12px}
+.obj-result-score.pass{color:var(--done)}
+.obj-result-score.fail{color:var(--coral)}
+
+/* LOADING */
+.loading{display:flex;flex-direction:column;align-items:center;gap:12px;padding:40px 0}
+.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--mint);border-radius:50%;animation:spin .8s linear infinite}
+.loading-text{font-size:13px;color:var(--text-3);text-align:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* CACHED BADGE */
+.cached-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;background:rgba(110,230,168,0.08);color:var(--done);border:1px solid rgba(110,230,168,0.15)}
+
+/* QUIZ HISTORY */
+.quiz-history{margin-top:32px}
+.quiz-history h3{font-family:'Instrument Serif',serif;font-size:18px;font-weight:400;margin-bottom:12px}
+.qh-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:8px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .2s}
+.qh-item:hover{border-color:var(--border-h);background:var(--surface-h)}
+.qh-title{flex:1;font-size:14px;font-weight:600}
+.qh-score{font-size:13px;font-weight:700;color:var(--done)}
+.qh-date{font-size:11px;color:var(--text-4)}
+.qh-actions{display:flex;gap:6px}
+.qh-btn{background:none;border:none;color:var(--text-4);cursor:pointer;font-size:16px;padding:4px;transition:color .2s}
+.qh-btn:hover{color:var(--text-2)}
+.qh-btn.delete:hover{color:var(--coral)}
+
+/* CONFETTI & TOAST */
+.confetti-container{position:fixed;inset:0;pointer-events:none;z-index:10000;overflow:hidden}
+.confetti-piece{position:absolute;width:8px;height:8px;border-radius:2px;animation:confettiFall 2.5s cubic-bezier(.25,.46,.45,.94) forwards}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0) scale(1);opacity:1}100%{transform:translateY(100vh) rotate(720deg) scale(.3);opacity:0}}
+.toast{position:fixed;bottom:calc(30px + var(--safe-bottom));left:50%;transform:translateX(-50%) translateY(100px);padding:14px 24px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--done);box-shadow:0 8px 32px rgba(0,0,0,0.4),0 0 20px var(--done-glow);font-size:14px;font-weight:700;color:var(--done);opacity:0;transition:all .5s cubic-bezier(.22,1,.36,1);z-index:10001;text-align:center;max-width:90vw}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* ANIMATIONS */
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeSlide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 .day{animation:rise .4s cubic-bezier(.22,1,.36,1) both}
 .day:nth-child(1){animation-delay:.02s}.day:nth-child(2){animation-delay:.05s}.day:nth-child(3){animation-delay:.08s}.day:nth-child(4){animation-delay:.11s}.day:nth-child(5){animation-delay:.14s}.day:nth-child(6){animation-delay:.17s}.day:nth-child(7){animation-delay:.2s}
-@media(max-width:480px){.app{padding:16px 16px calc(32px + var(--safe-bottom))}.hero{padding:36px 0 24px}.hero h1{font-size:36px}.stats-row{gap:24px;padding:32px 0 20px}.countdown-num{font-size:44px}.ring-block{width:110px;height:110px}.ring-pct{font-size:28px}.day-row{padding:12px 14px;gap:10px}.day-subs{padding-left:78px}.day-n{font-size:20px}.day-date{min-width:34px}.day-topics{font-size:13px}.method-grid{grid-template-columns:1fr}.exam-chip{font-size:11px;padding:7px 12px}.love-note{font-size:12px}.wk-btn{padding:9px 12px;font-size:12px}}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+.app{padding:16px 16px calc(32px + var(--safe-bottom))}.hero{padding:36px 0 24px}.hero h1{font-size:36px}.stats-row{gap:24px;padding:32px 0 20px}.countdown-num{font-size:44px}.ring-block{width:110px;height:110px}.ring-pct{font-size:28px}.day-row{padding:12px 14px;gap:10px}.day-subs{padding-left:78px}.day-n{font-size:20px}.day-date{min-width:34px}.day-topics{font-size:13px}.method-grid{grid-template-columns:1fr}.exam-chip{font-size:11px;padding:7px 12px}.love-note{font-size:12px}.wk-btn{padding:9px 12px;font-size:12px}.quiz-q{padding:18px}.quiz-q-num{font-size:20px}
+}
 @media(min-width:768px){.app{max-width:640px;padding:40px 24px 80px}.day-row{padding:16px 22px}}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 </style>
@@ -136,6 +277,22 @@ body::after{content:'';position:fixed;bottom:-200px;left:-200px;width:500px;heig
 <body>
 <div class="grain"></div>
 <div class="app">
+
+<!-- GLOBAL NAV -->
+<div class="global-nav">
+<button class="gn-btn active" onclick="goPage('planning')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+Planning
+</button>
+<button class="gn-btn" onclick="goPage('quiz')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r=".5" fill="currentColor"/></svg>
+Quiz IA
+</button>
+</div>
+
+<!-- ==================== PAGE 1: PLANNING ==================== -->
+<div class="page active" id="pagePlanning">
+
 <div class="hero">
 <div class="hero-badge">✨ Semestre 3 — IFSI</div>
 <h1>Tes révisions,<br><em>on gère ça</em></h1>
@@ -147,6 +304,7 @@ body::after{content:'';position:fixed;bottom:-200px;left:-200px;width:500px;heig
 <div class="exam-chip"><b>30 avr</b> · Exam 3</div>
 </div>
 </div>
+
 <div class="stats-row">
 <div class="countdown-block">
 <div class="countdown-num" id="cdNum">—</div>
@@ -158,143 +316,165 @@ body::after{content:'';position:fixed;bottom:-200px;left:-200px;width:500px;heig
 <circle class="ring-bg" cx="70" cy="70" r="58"/>
 <circle class="ring-fill" id="ringF" cx="70" cy="70" r="58" stroke-dasharray="364.42" stroke-dashoffset="364.42"/>
 </svg>
-<div class="ring-inner">
-<div class="ring-pct" id="ringP">0%</div>
-<div class="ring-lbl">révisé</div>
+<div class="ring-inner"><div class="ring-pct" id="ringP">0%</div><div class="ring-lbl">révisé</div></div>
 </div>
 </div>
-</div>
+
 <div class="ue-bars" id="ueBars"></div>
 <div class="moti-banner" id="motiBanner"><span class="moti-emoji">🌱</span><span class="moti-text">Chaque pas compte. C'est parti !</span></div>
 <div class="week-nav" id="weekNav"></div>
 <div id="panels"></div>
+
 <h2 class="sec-title">Apprendre <em>efficacement</em></h2>
-<p class="sec-sub">Les techniques validées par la science cognitive — pas de blabla.</p>
+<p class="sec-sub">Les techniques validées par la science cognitive.</p>
 <div class="method-grid">
-<div class="m-card"><div class="m-num">01</div><h4>Active Recall</h4><p>Ferme ton cours. Écris tout ce que tu retiens sur une feuille blanche. Vérifie. Chaque effort de rappel grave l'info dans ta mémoire.</p></div>
-<div class="m-card"><div class="m-num">02</div><h4>Répétition espacée</h4><p>Revois à J+1, J+3, J+7. Le planning intègre des jours de révision aux bons moments pour consolider.</p></div>
-<div class="m-card"><div class="m-num">03</div><h4>Flashcards Anki</h4><p>L'appli gère les intervalles automatiquement. Parfait pour la pharmaco et les pathologies. Gratuit sur ordi et Android.</p></div>
-<div class="m-card"><div class="m-num">04</div><h4>Technique Feynman</h4><p>Explique le chapitre à voix haute comme si tu l'enseignais. Si tu bloques, c'est que c'est pas encore maîtrisé.</p></div>
+<div class="m-card"><div class="m-num">01</div><h4>Active Recall</h4><p>Ferme ton cours. Écris tout ce que tu retiens sur une feuille blanche. Vérifie.</p></div>
+<div class="m-card"><div class="m-num">02</div><h4>Répétition espacée</h4><p>Revois à J+1, J+3, J+7. Le planning intègre des jours de révision aux bons moments.</p></div>
+<div class="m-card"><div class="m-num">03</div><h4>Flashcards Anki</h4><p>L'appli gère les intervalles automatiquement. Parfait pour la pharmaco et les pathologies.</p></div>
+<div class="m-card"><div class="m-num">04</div><h4>Technique Feynman</h4><p>Explique le chapitre à voix haute. Si tu bloques, c'est pas encore maîtrisé.</p></div>
 </div>
-<div class="cta"><h4>Envie de flashcards toutes faites ?</h4><p>Envoie tes cours (PDF, photos…) et on te génère un deck Anki prêt à importer. Un chapitre = un deck, question/réponse, optimisé pour le par cœur.</p></div>
 <div class="proto">
 <h4>Ta routine du soir — 50 min</h4>
-<div class="proto-step"><span class="proto-n">1</span><span>Lire le chapitre une fois attentivement <b>(20 min)</b></span></div>
+<div class="proto-step"><span class="proto-n">1</span><span>Lire le chapitre attentivement <b>(20 min)</b></span></div>
 <div class="proto-step"><span class="proto-n">2</span><span>Fermer le cours — écrire tout ce qu'on retient <b>(10 min)</b></span></div>
-<div class="proto-step"><span class="proto-n">3</span><span>Vérifier, corriger, compléter les trous <b>(10 min)</b></span></div>
-<div class="proto-step"><span class="proto-n">4</span><span>Faire ou revoir les flashcards Anki <b>(10 min)</b></span></div>
+<div class="proto-step"><span class="proto-n">3</span><span>Vérifier, corriger, compléter <b>(10 min)</b></span></div>
+<div class="proto-step"><span class="proto-n">4</span><span>Flashcards Anki du chapitre <b>(10 min)</b></span></div>
 <div class="proto-step"><span class="proto-n">5</span><span>Lendemain : 5 min de flashcards avant le nouveau chapitre</span></div>
 </div>
 <div class="footer-love">fait avec <span class="heart">♥</span> par ton copain</div>
 </div>
+
+<!-- ==================== PAGE 2: QUIZ ==================== -->
+<div class="page" id="pageQuiz">
+
+<div class="quiz-hero">
+<h1>Quiz <em>intelligent</em></h1>
+<p>Colle ton cours, l'IA extrait les objectifs et génère un quiz ciblé. Tes réponses sont sauvegardées.</p>
+</div>
+
+<!-- API KEY -->
+<div class="api-setup" id="apiSetup">
+<label>🔑 Clé API Claude (nécessaire pour générer les quiz)</label>
+<div class="api-row">
+<input class="api-input" type="password" id="apiKeyInput" placeholder="sk-ant-api03-..." autocomplete="off">
+<button class="btn btn-mint" onclick="saveApiKey()">Sauver</button>
+</div>
+<div class="api-status" id="apiStatus"></div>
+</div>
+
+<!-- COURSE INPUT -->
+<div class="course-input">
+<h3>Colle ton cours <em>ici</em></h3>
+<textarea class="course-ta" id="courseTa" placeholder="Copie-colle le contenu de ton cours ici...&#10;&#10;Tu peux aussi copier le texte depuis tes slides, tes notes, ou tes fiches. Plus le texte est complet, meilleur sera le quiz !"></textarea>
+<div class="input-actions">
+<input type="text" class="api-input" id="courseTitle" placeholder="Nom du chapitre (ex: La vaccination)" style="max-width:240px">
+<button class="btn btn-mint" id="btnGenerate" onclick="generateQuiz()" disabled>✨ Générer le quiz</button>
+<span class="char-count" id="charCount">0 caractères</span>
+</div>
+</div>
+
+<!-- OBJECTIVES (shown after extraction) -->
+<div id="objArea"></div>
+
+<!-- QUIZ (shown after generation) -->
+<div id="quizArea"></div>
+
+<!-- RESULTS (shown after completion) -->
+<div id="resultsArea"></div>
+
+<!-- HISTORY -->
+<div class="quiz-history" id="historyArea">
+<h3>Tes quiz précédents</h3>
+<div id="historyList"></div>
+</div>
+
+<div class="footer-love">fait avec <span class="heart">♥</span> par ton copain</div>
+</div>
+
+</div><!-- /app -->
+
 <div class="confetti-container" id="confettiBox"></div>
 <div class="toast" id="toast"></div>
 
 <script>
+// ======================================================================
+// DATA
+// ======================================================================
 const DATA=[
-{w:1,t:"S1",full:"24 – 30 mars",focus:"UE 2.5 — Inflammatoires & infectieux",
-msg:"Première semaine, on pose les bases. Tu vas voir, ça va venir tout seul 💪",
-days:[
+{w:1,t:"S1",full:"24 – 30 mars",focus:"UE 2.5 — Inflammatoires & infectieux",msg:"Première semaine, on pose les bases. Tu vas voir, ça va venir tout seul 💪",days:[
 {dow:"LUN",n:"24",ue:"ue25",lb:"UE 2.5",tp:["Examens bio de l'inflammation & prélèvements bactériologiques"],nt:"Les bases — on pose le cadre"},
 {dow:"MAR",n:"25",ue:"ue25",lb:"UE 2.5",tp:["La vaccination"]},
 {dow:"MER",n:"26",ue:"ue25",lb:"UE 2.5",tp:["La grippe","La coqueluche"],nt:"2 chapitres courts et liés"},
 {dow:"JEU",n:"27",ue:"rest",lb:"Soirée libre",tp:["Profite de ta soirée 🎉"]},
 {dow:"VEN",n:"28",ue:"ue25",lb:"UE 2.5",tp:["Les hépatites"]},
 {dow:"SAM",n:"29",ue:"rest",lb:"Week-end",tp:["Repos 💛"]},
-{dow:"DIM",n:"30",ue:"rest",lb:"Week-end",tp:["Repos 💛"]}
-]},
-{w:2,t:"S2",full:"31 mars – 6 avr",focus:"UE 2.5 — On continue sur la lancée",
-msg:"Tu as déjà une semaine derrière toi. Les habitudes se construisent, continue 🌿",
-days:[
+{dow:"DIM",n:"30",ue:"rest",lb:"Week-end",tp:["Repos 💛"]}]},
+{w:2,t:"S2",full:"31 mars – 6 avr",focus:"UE 2.5 — On continue",msg:"Tu as déjà une semaine derrière toi. Les habitudes se construisent 🌿",days:[
 {dow:"LUN",n:"31",ue:"ue25",lb:"UE 2.5",tp:["Les infections urinaires"]},
 {dow:"MAR",n:"1",ue:"ue25",lb:"UE 2.5",tp:["Les diarrhées infectieuses"]},
 {dow:"MER",n:"2",ue:"ue25",lb:"UE 2.5",tp:["Les MICI"]},
 {dow:"JEU",n:"3",ue:"rest",lb:"Soirée libre",tp:["Profite de ta soirée 🎉"]},
 {dow:"VEN",n:"4",ue:"ue25",lb:"UE 2.5",tp:["Les endoscopies digestives"],nt:"Lié aux MICI du mercredi"},
 {dow:"SAM",n:"5",ue:"rest",lb:"Week-end",tp:["Repos 💛"]},
-{dow:"DIM",n:"6",ue:"rest",lb:"Week-end",tp:["Repos 💛"]}
-]},
-{w:3,t:"S3",full:"7 – 13 avr",focus:"UE 2.5 — Les gros morceaux",
-msg:"Mi-parcours de l'UE 2.5 ! Les sujets importants arrivent, mais tu es prête 🔥",
-days:[
+{dow:"DIM",n:"6",ue:"rest",lb:"Week-end",tp:["Repos 💛"]}]},
+{w:3,t:"S3",full:"7 – 13 avr",focus:"UE 2.5 — Les gros morceaux",msg:"Mi-parcours ! Les sujets importants arrivent, mais tu es prête 🔥",days:[
 {dow:"LUN",n:"7",ue:"ue25",lb:"UE 2.5",tp:["La tuberculose"]},
 {dow:"MAR",n:"8",ue:"ue25",lb:"UE 2.5",tp:["Les méningites"]},
 {dow:"MER",n:"9",ue:"ue25",lb:"UE 2.5",tp:["Le choc septique","Le choc anaphylactique"],nt:"Même logique physiopath"},
 {dow:"JEU",n:"10",ue:"rest",lb:"Soirée libre",tp:["Profite de ta soirée 🎉"]},
 {dow:"VEN",n:"11",ue:"ue25",lb:"UE 2.5",tp:["Les IST"]},
 {dow:"SAM",n:"12",ue:"rest",lb:"Week-end",tp:["Repos 💛"]},
-{dow:"DIM",n:"13",ue:"rest",lb:"Week-end",tp:["Repos 💛"]}
-]},
-{w:4,t:"S4",full:"14 – 20 avr",focus:"UE 2.5 (fin) → UE 2.8 Obstructifs",
-msg:"L'UE 2.5 se boucle cette semaine ! Nouvelle matière, nouveau souffle 🌊",
-days:[
-{dow:"LUN",n:"14",ue:"ue25",lb:"UE 2.5",tp:["La polyarthrite","Alimentation & inflammation"],nt:"2 courts pour boucler l'UE 2.5 ✅"},
-{dow:"MAR",n:"15",ue:"revision",lb:"🔁 Révision",tp:["Révision complète UE 2.5"],nt:"Relire tes fiches, te tester — journée clé"},
+{dow:"DIM",n:"13",ue:"rest",lb:"Week-end",tp:["Repos 💛"]}]},
+{w:4,t:"S4",full:"14 – 20 avr",focus:"UE 2.5 (fin) → UE 2.8 Obstructifs",msg:"L'UE 2.5 se boucle ! Nouvelle matière, nouveau souffle 🌊",days:[
+{dow:"LUN",n:"14",ue:"ue25",lb:"UE 2.5",tp:["La polyarthrite","Alimentation & inflammation"],nt:"2 courts pour boucler ✅"},
+{dow:"MAR",n:"15",ue:"revision",lb:"🔁 Révision",tp:["Révision complète UE 2.5"],nt:"Relire tes fiches, te tester"},
 {dow:"MER",n:"16",ue:"ue28",lb:"UE 2.8",tp:["BPCO","Asthme"],nt:"Respiratoire ensemble"},
 {dow:"JEU",n:"17",ue:"rest",lb:"Soirée libre",tp:["Profite de ta soirée 🎉"]},
 {dow:"VEN",n:"18",ue:"ue28",lb:"UE 2.8",tp:["Urologie"]},
-{dow:"SAM",n:"19",ue:"ue28",lb:"UE 2.8",tp:["Neurologie / AVC"],nt:"⚡ Samedi exceptionnel — chapitre important"},
-{dow:"DIM",n:"20",ue:"rest",lb:"Week-end",tp:["Repos 💛"]}
-]},
-{w:5,t:"S5",full:"21 – 27 avr",focus:"Sprint final — UE 2.8 + 2.11 + petites UE",
-msg:"Dernière ligne droite. Tu as fait le plus dur. Reste concentrée, tu gères 💫",
-days:[
+{dow:"SAM",n:"19",ue:"ue28",lb:"UE 2.8",tp:["Neurologie / AVC"],nt:"⚡ Samedi exceptionnel"},
+{dow:"DIM",n:"20",ue:"rest",lb:"Week-end",tp:["Repos 💛"]}]},
+{w:5,t:"S5",full:"21 – 27 avr",focus:"Sprint final — tout le reste",msg:"Dernière ligne droite. Tu as fait le plus dur. Tu gères 💫",days:[
 {dow:"LUN",n:"21",ue:"ue28",lb:"UE 2.8",tp:["OAP / SCA","EP / ACFA"],nt:"Cardio regroupé"},
 {dow:"MAR",n:"22",ue:"ue28",lb:"UE 2.8",tp:["Occlusions intestinales","Lithiases biliaires"]},
 {dow:"MER",n:"23",ue:"ue211",lb:"UE 2.11",tp:["Anticoagulants","Antibiotiques"],nt:"Les 2 classes incontournables"},
-{dow:"JEU",n:"24",ue:"ue211",lb:"UE 2.11",tp:["Antihypertenseurs","Antiémétiques","Anesthésiques"],nt:"⚡ Jeudi exceptionnel — sprint final"},
+{dow:"JEU",n:"24",ue:"ue211",lb:"UE 2.11",tp:["Antihypertenseurs","Antiémétiques","Anesthésiques"],nt:"⚡ Jeudi exceptionnel"},
 {dow:"VEN",n:"25",ue:"ue211",lb:"UE 2.11",tp:["Dérivés nitrés / Antiarythmiques / Tonicardiaques","Traitements en cardio","Psychotropes"],nt:"Dernier bloc pharmaco 🏁"},
 {dow:"SAM",n:"26",ue:"ue12",lb:"UE 1.2 + 4.2",tp:["Travail de groupe (UE 1.2)","Concepts soins relationnels (UE 4.2)"]},
-{dow:"DIM",n:"27",ue:"final",lb:"🏁 Révision finale",tp:["Relire toutes les fiches — cibler les points faibles"],nt:"Pas de nouveau contenu. Confiance."}
-]}
+{dow:"DIM",n:"27",ue:"final",lb:"🏁 Révision finale",tp:["Relire toutes les fiches — cibler les points faibles"],nt:"Confiance."}]}
 ];
-
 const UE={ue25:{name:"UE 2.5",tot:16,cls:"sky"},ue28:{name:"UE 2.8",tot:7,cls:"coral"},ue211:{name:"UE 2.11",tot:8,cls:"mint"},ue12:{name:"UE 1.2",tot:1,cls:"gold"},ue42:{name:"UE 4.2",tot:1,cls:"lavender"}};
+const LOVE=["Je suis fier de toi, peu importe le résultat. Mais je sais que tu vas tout déchirer. 💛","Tu es la personne la plus déterminée que je connaisse. Ces exams n'ont aucune chance. 🔥","Un chapitre à la fois, un jour à la fois. Et moi je suis là. 💛","T'es une machine quand tu te mets à bosser. Fais-toi confiance. ✨","Rappelle-toi pourquoi tu fais tout ça. Tu vas y arriver. 💪","Le plus dur c'est de commencer. Et ça, tu l'as déjà fait. 🌟","Chaque soir que tu révises, c'est un investissement. Fière de toi. 💛"];
+const MOTI={0:{e:"🌱",t:"Chaque voyage commence par un premier pas. C'est parti !"},10:{e:"🌿",t:"10% ! Les habitudes se mettent en place."},25:{e:"💪",t:"Un quart du chemin !"},33:{e:"🔥",t:"Un tiers ! T'assures."},50:{e:"⭐",t:"LA MOITIÉ. Plus proche de la fin que du début !"},66:{e:"🚀",t:"Deux tiers !"},75:{e:"✨",t:"75% ! Il reste un sprint."},90:{e:"💫",t:"90% !! Plus que quelques chapitres..."},100:{e:"🎉",t:"100% !! Tu vas tout déchirer !!"}};
+const TOASTS={5:"5 chapitres ! 🌿",10:"10 chapitres ! 🔥",16:"UE 2.5 terminée ! 🎯",20:"20 chapitres ! 💪",25:"25 chapitres ! 🚀",30:"30 sur 33 ! ✨",33:"TOUT RÉVISÉ ! 🎉🎉🎉"};
+const OBJ_COLORS=["sky","coral","mint","gold","lavender","rose"];
 
-const LOVE_HERO=[
-"Je suis fier de toi, peu importe le résultat. Mais je sais que tu vas tout déchirer. 💛",
-"Tu es la personne la plus déterminée que je connaisse. Ces exams n'ont aucune chance. 🔥",
-"Un chapitre à la fois, un jour à la fois. Et moi je suis là. 💛",
-"T'es une machine quand tu te mets à bosser. Fais-toi confiance. ✨",
-"Rappelle-toi pourquoi tu fais tout ça. Tu vas y arriver, j'en suis sûr. 💪",
-"Le plus dur c'est de commencer. Et ça, tu l'as déjà fait. 🌟",
-"Chaque soir que tu révises, c'est un investissement pour ton futur. Fière de toi. 💛"
-];
-
-const MOTI={
-0:{e:"🌱",t:"Chaque voyage commence par un premier pas. C'est parti !"},
-10:{e:"🌿",t:"10% déjà ! Les habitudes se mettent en place."},
-25:{e:"💪",t:"Un quart du chemin ! Tu prends un bon rythme."},
-33:{e:"🔥",t:"Un tiers ! L'UE 2.5 avance bien, t'assures."},
-50:{e:"⭐",t:"LA MOITIÉ. Plus proche de la fin que du début !"},
-66:{e:"🚀",t:"Deux tiers ! La ligne d'arrivée se rapproche."},
-75:{e:"✨",t:"75% ! Il reste un sprint, et tu es prête."},
-90:{e:"💫",t:"90% !! Plus que quelques chapitres..."},
-100:{e:"🎉",t:"100% !! TOUT EST RÉVISÉ. Tu vas tout déchirer !!"}
-};
-
-const TOASTS={
-5:"5 chapitres révisés ! 🌿 Ça commence à compter.",
-10:"10 chapitres ! 🔥 Tu es en feu.",
-16:"UE 2.5 terminée ! 🎯 Énorme.",
-20:"20 chapitres ! 💪 Plus de la moitié.",
-25:"25 chapitres ! 🚀 Sprint final.",
-30:"30 sur 33 ! ✨ C'est presque fini.",
-33:"TOUT RÉVISÉ ! 🎉🎉🎉 Tu vas tout déchirer !!"
-};
-
-const SK="rev_s3_v3";
+// ======================================================================
+// STATE
+// ======================================================================
+const SK="rev_s3_v4";const QK="rev_quiz_v1";
 const ld=()=>{try{return JSON.parse(localStorage.getItem(SK))||{}}catch{return{}}};
 const sv=s=>localStorage.setItem(SK,JSON.stringify(s));
-let st=ld();
+const ldQ=()=>{try{return JSON.parse(localStorage.getItem(QK))||{quizzes:[],apiKey:""};}catch{return{quizzes:[],apiKey:""};}};
+const svQ=s=>localStorage.setItem(QK,JSON.stringify(s));
+let st=ld(),qs=ldQ();
 
-// Countdown
+// ======================================================================
+// PAGE SWITCHING
+// ======================================================================
+function goPage(p){
+document.querySelectorAll('.gn-btn').forEach(b=>b.classList.remove('active'));
+document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));
+if(p==='planning'){document.querySelectorAll('.gn-btn')[0].classList.add('active');document.getElementById('pagePlanning').classList.add('active')}
+else{document.querySelectorAll('.gn-btn')[1].classList.add('active');document.getElementById('pageQuiz').classList.add('active');initQuizPage()}
+}
+
+// ======================================================================
+// PLANNING PAGE
+// ======================================================================
 const exam=new Date(2026,3,28);
 document.getElementById('cdNum').textContent=Math.max(0,Math.ceil((exam-new Date())/864e5));
-
-// Hero love note — rotates daily
 const doy=Math.floor((new Date()-new Date(2026,0,1))/864e5);
-document.getElementById('heroLove').innerHTML=LOVE_HERO[doy%LOVE_HERO.length]+'<span class="sig">— Ton copain 💛</span>';
+document.getElementById('heroLove').innerHTML=LOVE[doy%LOVE.length]+'<span class="sig">— Ton copain 💛</span>';
 
 // Build nav
 const nav=document.getElementById('weekNav');
@@ -312,19 +492,16 @@ h+=`<div class="day ${dn?'done':''} ${isR?'rest-day':''}" data-ue="${d.ue}" data
 <div class="chk"><svg viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="#100e14" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 <div class="day-date"><div class="day-dow">${d.dow}</div><div class="day-n">${d.n}</div></div>
 <div class="day-body"><div class="day-label">${d.lb}</div><div class="day-topics">${d.tp.join(' + ')}</div>${d.nt?`<div class="day-note">${d.nt}</div>`:''}</div>
-</div>
-${ml?`<div class="day-subs">${d.tp.map((t,ti)=>{const sk2=`${k}_${ti}`;return`<div class="sub-chip ${st[sk2]?'checked':''}" data-sk="${sk2}" onclick="event.stopPropagation();togSub('${sk2}',this,'${k}')">${t}</div>`}).join('')}</div>`:''}
-</div>`;
+</div>${ml?`<div class="day-subs">${d.tp.map((t,ti)=>`<div class="sub-chip ${st[`${k}_${ti}`]?'checked':''}" data-sk="${k}_${ti}" onclick="event.stopPropagation();togSub('${k}_${ti}',this,'${k}')">${t}</div>`).join('')}</div>`:''}</div>`;
 });
 p.innerHTML=h;pnl.appendChild(p);
 });
 
-// Long press / double click for expand
+// Expand multi-topic
 document.querySelectorAll('.day').forEach(d=>{
 const dd=dayD(d.dataset.k);
 if(dd&&dd.tp.length>1&&dd.ue!=='rest'){
-let tm;
-const row=d.querySelector('.day-row');
+let tm;const row=d.querySelector('.day-row');
 row.addEventListener('dblclick',e=>{e.preventDefault();d.classList.toggle('open')});
 row.addEventListener('touchstart',()=>{tm=setTimeout(()=>d.classList.toggle('open'),400)},{passive:true});
 row.addEventListener('touchend',()=>clearTimeout(tm));
@@ -332,89 +509,257 @@ row.addEventListener('touchmove',()=>clearTimeout(tm));
 }});
 
 function goWeek(i){document.querySelectorAll('.wk-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.wk-panel').forEach(p=>p.classList.remove('active'));document.getElementById(`wb${i}`).classList.add('active');document.getElementById(`wp${i}`).classList.add('active')}
-
 function dayD(k){const[wi,di]=k.split('_').map(Number);return DATA[wi]?.days[di]}
 
 function tog(k){
-st=ld();const d=dayD(k);if(!d)return;
-const was=!!st[k];
+st=ld();const d=dayD(k);if(!d)return;const was=!!st[k];
 if(!was){st[k]=true;if(d.tp.length>1)d.tp.forEach((_,ti)=>{st[`${k}_${ti}`]=true})}
 else{delete st[k];if(d.tp.length>1)d.tp.forEach((_,ti)=>{delete st[`${k}_${ti}`]})}
 sv(st);rCard(k);updP();if(!was)chkM();
 }
-
 function togSub(sk,chip,dk){
-st=ld();
-if(st[sk]){delete st[sk];chip.classList.remove('checked')}
-else{st[sk]=true;chip.classList.add('checked')}
-const d=dayD(dk);
-if(d){const all=d.tp.every((_,ti)=>st[`${dk}_${ti}`]);if(all)st[dk]=true;else delete st[dk]}
+st=ld();if(st[sk]){delete st[sk];chip.classList.remove('checked')}else{st[sk]=true;chip.classList.add('checked')}
+const d=dayD(dk);if(d){const all=d.tp.every((_,ti)=>st[`${dk}_${ti}`]);if(all)st[dk]=true;else delete st[dk]}
 sv(st);rCard(dk);updP();if(st[sk])chkM();
 }
-
-function rCard(k){
-const el=document.getElementById(`d${k}`);if(!el)return;
-if(st[k])el.classList.add('done');else el.classList.remove('done');
-el.querySelectorAll('.sub-chip').forEach(c=>{if(st[c.dataset.sk])c.classList.add('checked');else c.classList.remove('checked')});
-}
+function rCard(k){const el=document.getElementById(`d${k}`);if(!el)return;if(st[k])el.classList.add('done');else el.classList.remove('done');el.querySelectorAll('.sub-chip').forEach(c=>{if(st[c.dataset.sk])c.classList.add('checked');else c.classList.remove('checked')})}
 
 function cntDone(){
 st=ld();const c={};Object.keys(UE).forEach(k=>c[k]=0);
-DATA.forEach((w,wi)=>w.days.forEach((d,di)=>{
-const k=`${wi}_${di}`;if(!st[k])return;
-if(d.ue==='ue12'){if(d.tp.some(t=>t.includes('1.2')))c.ue12=Math.min((c.ue12||0)+1,UE.ue12.tot);if(d.tp.some(t=>t.includes('4.2')))c.ue42=Math.min((c.ue42||0)+1,UE.ue42.tot)}
-else if(d.ue in UE)c[d.ue]+=d.tp.length;
-}));
+DATA.forEach((w,wi)=>w.days.forEach((d,di)=>{const k=`${wi}_${di}`;if(!st[k])return;
+if(d.ue==='ue12'){if(d.tp.some(t=>t.includes('1.2')))c.ue12=Math.min((c.ue12||0)+1,1);if(d.tp.some(t=>t.includes('4.2')))c.ue42=Math.min((c.ue42||0)+1,1)}
+else if(d.ue in UE)c[d.ue]+=d.tp.length}));
 Object.keys(UE).forEach(k=>c[k]=Math.min(c[k]||0,UE[k].tot));return c;
 }
 
 function updP(){
 const c=cntDone();let tD=0,tA=0;
-document.getElementById('ueBars').innerHTML=Object.entries(UE).map(([k,info])=>{
-const d=c[k],p=Math.round(d/info.tot*100);tD+=d;tA+=info.tot;
-return`<div class="ue-row"><span class="ue-name">${info.name}</span><div class="ue-track"><div class="ue-fill ${info.cls}" style="width:${p}%"></div></div><span class="ue-count">${d}/${info.tot}</span></div>`;
-}).join('');
-const pct=tA>0?Math.round(tD/tA*100):0;
-const circ=2*Math.PI*58;
+document.getElementById('ueBars').innerHTML=Object.entries(UE).map(([k,info])=>{const d=c[k],p=Math.round(d/info.tot*100);tD+=d;tA+=info.tot;return`<div class="ue-row"><span class="ue-name">${info.name}</span><div class="ue-track"><div class="ue-fill ${info.cls}" style="width:${p}%"></div></div><span class="ue-count">${d}/${info.tot}</span></div>`}).join('');
+const pct=tA>0?Math.round(tD/tA*100):0,circ=2*Math.PI*58;
 document.getElementById('ringF').style.strokeDashoffset=circ-(pct/100)*circ;
 document.getElementById('ringP').textContent=pct+'%';
-const thr=Object.keys(MOTI).map(Number).sort((a,b)=>b-a);
-const mt=thr.find(t=>pct>=t)??0;const m=MOTI[mt];
+const thr=Object.keys(MOTI).map(Number).sort((a,b)=>b-a);const mt=thr.find(t=>pct>=t)??0;const m=MOTI[mt];
 document.getElementById('motiBanner').innerHTML=`<span class="moti-emoji">${m.e}</span><span class="moti-text">${m.t}</span>`;
-DATA.forEach((w,wi)=>{
-const sd=w.days.map((d,di)=>({d,di})).filter(x=>x.d.ue!=='rest');
-const all=sd.length>0&&sd.every(x=>st[`${wi}_${x.di}`]);
-const dot=document.getElementById(`wd${wi}`);
-if(all)dot.classList.add('done');else dot.classList.remove('done');
-});
+DATA.forEach((w,wi)=>{const sd=w.days.map((d,di)=>({d,di})).filter(x=>x.d.ue!=='rest');const all=sd.length>0&&sd.every(x=>st[`${wi}_${x.di}`]);const dot=document.getElementById(`wd${wi}`);if(all)dot.classList.add('done');else dot.classList.remove('done')});
 }
 
 let lastTC=-1;
-function chkM(){
-const total=Object.values(cntDone()).reduce((a,b)=>a+b,0);
-const thr=Object.keys(TOASTS).map(Number).sort((a,b)=>a-b);
-for(const t of thr){if(total>=t&&lastTC<t){lastTC=t;showToast(TOASTS[t]);if(t>=16||t===33)boom();break}}
+function chkM(){const total=Object.values(cntDone()).reduce((a,b)=>a+b,0);const thr=Object.keys(TOASTS).map(Number).sort((a,b)=>a-b);for(const t of thr){if(total>=t&&lastTC<t){lastTC=t;showToast(TOASTS[t]);if(t>=16||t===33)boom();break}}}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500)}
+function boom(){const box=document.getElementById('confettiBox');const cols=['#ff9b8a','#ffc4a0','#c4b0ff','#8eecc4','#8ac4ff','#ffd480','#ff8aaa'];for(let i=0;i<60;i++){const p=document.createElement('div');p.className='confetti-piece';p.style.left=Math.random()*100+'vw';p.style.background=cols[Math.floor(Math.random()*cols.length)];p.style.animationDelay=Math.random()*0.8+'s';p.style.animationDuration=(2+Math.random()*1.5)+'s';p.style.width=(6+Math.random()*6)+'px';p.style.height=(6+Math.random()*6)+'px';box.appendChild(p);setTimeout(()=>p.remove(),4000)}}
+
+// Init planning
+DATA.forEach((w,wi)=>w.days.forEach((d,di)=>rCard(`${wi}_${di}`)));updP();
+const ic=Object.values(cntDone()).reduce((a,b)=>a+b,0);const its=Object.keys(TOASTS).map(Number).sort((a,b)=>b-a);lastTC=its.find(t=>ic>=t)??-1;
+
+// ======================================================================
+// QUIZ PAGE
+// ======================================================================
+let currentQuiz=null,currentAnswers={},quizSubmitted=false;
+
+function initQuizPage(){
+const ak=qs.apiKey;
+if(ak){document.getElementById('apiKeyInput').value=ak;document.getElementById('apiStatus').textContent='✓ Clé sauvegardée';document.getElementById('apiStatus').className='api-status ok'}
+renderHistory();
 }
 
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500)}
+// API Key
+function saveApiKey(){
+const k=document.getElementById('apiKeyInput').value.trim();
+if(!k){document.getElementById('apiStatus').textContent='Clé vide';return}
+qs.apiKey=k;svQ(qs);
+document.getElementById('apiStatus').textContent='✓ Clé sauvegardée';document.getElementById('apiStatus').className='api-status ok';
+}
+window.saveApiKey=saveApiKey;
 
-function boom(){
-const box=document.getElementById('confettiBox');
-const cols=['#ff9b8a','#ffc4a0','#c4b0ff','#8eecc4','#8ac4ff','#ffd480','#ff8aaa'];
-for(let i=0;i<60;i++){
-const p=document.createElement('div');p.className='confetti-piece';
-p.style.left=Math.random()*100+'vw';p.style.background=cols[Math.floor(Math.random()*cols.length)];
-p.style.animationDelay=Math.random()*0.8+'s';p.style.animationDuration=(2+Math.random()*1.5)+'s';
-p.style.width=(6+Math.random()*6)+'px';p.style.height=(6+Math.random()*6)+'px';
-box.appendChild(p);setTimeout(()=>p.remove(),4000);
+// Char count
+const ta=document.getElementById('courseTa');
+ta.addEventListener('input',()=>{
+const len=ta.value.length;
+document.getElementById('charCount').textContent=len+' caractères';
+document.getElementById('btnGenerate').disabled=len<50||!qs.apiKey;
+});
+
+// Generate Quiz
+async function generateQuiz(){
+const text=ta.value.trim();const title=document.getElementById('courseTitle').value.trim()||'Sans titre';
+if(text.length<50){showToast('Texte trop court !');return}
+if(!qs.apiKey){showToast('Ajoute ta clé API d\'abord');return}
+
+// Check cache
+const cacheKey=hashStr(text);
+const cached=qs.quizzes.find(q=>q.cacheKey===cacheKey);
+if(cached){
+currentQuiz=cached;currentAnswers={};quizSubmitted=false;
+renderObjectives(cached.objectives);renderQuiz(cached.questions,true);
+showToast('Quiz chargé depuis le cache ! 🎯');return;
+}
+
+// Show loading
+const quizArea=document.getElementById('quizArea');
+quizArea.innerHTML=`<div class="loading"><div class="spinner"></div><div class="loading-text">Extraction des objectifs et génération du quiz...<br><small>Un seul appel API — ça prend ~10s</small></div></div>`;
+document.getElementById('objArea').innerHTML='';
+document.getElementById('resultsArea').innerHTML='';
+
+try{
+const response=await fetch("https://api.anthropic.com/v1/messages",{
+method:"POST",
+headers:{"Content-Type":"application/json","x-api-key":qs.apiKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
+body:JSON.stringify({
+model:"claude-sonnet-4-20250514",
+max_tokens:3000,
+messages:[{role:"user",content:`Tu es un assistant pédagogique pour étudiants infirmiers. Analyse ce cours et:
+
+1. Extrais les objectifs d'apprentissage (explicites ou déduits des titres/contenu)
+2. Génère un quiz de 6-8 questions qui teste ces objectifs
+
+IMPORTANT: Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.
+
+Format:
+{"objectives":["Objectif 1","Objectif 2"],"questions":[{"id":1,"type":"mcq","objective_id":0,"question":"...","choices":["A","B","C","D"],"correct_answer":"A","explanation":"..."},{"id":2,"type":"open","objective_id":1,"question":"...","correct_answer":"...","explanation":"..."}]}
+
+Types: "mcq" (QCM 4 choix) ou "open" (réponse écrite courte)
+objective_id = index dans le tableau objectives
+
+Cours:
+${text.substring(0,8000)}`}]
+})});
+
+const data=await response.json();
+if(data.error){throw new Error(data.error.message)}
+
+let content=data.content[0].text;
+// Clean JSON
+content=content.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
+const parsed=JSON.parse(content);
+
+const quiz={id:Date.now(),title,cacheKey,objectives:parsed.objectives||[],questions:parsed.questions||[],date:new Date().toISOString(),bestScore:null};
+
+qs.quizzes.push(quiz);svQ(qs);
+currentQuiz=quiz;currentAnswers={};quizSubmitted=false;
+renderObjectives(quiz.objectives);renderQuiz(quiz.questions,false);renderHistory();
+
+}catch(err){
+quizArea.innerHTML=`<div style="padding:24px;background:var(--coral-soft);border:1px solid var(--coral);border-radius:var(--radius);color:var(--coral);font-size:14px"><b>Erreur :</b> ${err.message}<br><small>Vérifie ta clé API et réessaie.</small></div>`;
 }}
+window.generateQuiz=generateQuiz;
 
-// Init
-DATA.forEach((w,wi)=>w.days.forEach((d,di)=>rCard(`${wi}_${di}`)));
-updP();
-const ic=Object.values(cntDone()).reduce((a,b)=>a+b,0);
-const its=Object.keys(TOASTS).map(Number).sort((a,b)=>b-a);
-lastTC=its.find(t=>ic>=t)??-1;
+function renderObjectives(objs){
+if(!objs||!objs.length)return;
+document.getElementById('objArea').innerHTML=`<div class="obj-section"><h3><span class="obj-icon">🎯</span> Objectifs d'apprentissage</h3><div class="obj-list">${objs.map((o,i)=>`<div class="obj-item"><div class="obj-bullet ${OBJ_COLORS[i%OBJ_COLORS.length]}"></div><div class="obj-text">${o}</div></div>`).join('')}</div></div>`;
+}
+
+function renderQuiz(questions,fromCache){
+const qa=document.getElementById('quizArea');
+let h=fromCache?'<div style="margin-bottom:12px"><span class="cached-badge">✓ Depuis le cache — gratuit</span></div>':'';
+h+='<div class="quiz-container">';
+questions.forEach((q,i)=>{
+const objText=currentQuiz.objectives[q.objective_id]||'';
+h+=`<div class="quiz-q" id="qq${q.id}"><div class="quiz-q-head"><div class="quiz-q-num">${i+1}</div><div class="quiz-q-body"><div class="quiz-q-obj">🎯 ${objText}</div><div class="quiz-q-text">${q.question}</div></div></div>`;
+if(q.type==='mcq'&&q.choices){
+h+='<div class="quiz-choices">';
+const letters=['A','B','C','D'];
+q.choices.forEach((c,ci)=>{h+=`<div class="quiz-choice" data-qid="${q.id}" data-val="${letters[ci]}" onclick="selectChoice(${q.id},'${letters[ci]}')"><div class="quiz-choice-letter">${letters[ci]}</div><span>${c}</span></div>`});
+h+='</div>';
+}else{
+h+=`<textarea class="quiz-open-input" id="open${q.id}" placeholder="Écris ta réponse ici..." oninput="currentAnswers[${q.id}]=this.value"></textarea>`;
+}
+h+=`<div id="explain${q.id}"></div></div>`;
+});
+h+=`<div style="text-align:center;margin-top:20px"><button class="btn btn-coral" onclick="submitQuiz()" id="btnSubmit" style="padding:14px 32px;font-size:15px">Vérifier mes réponses</button></div></div>`;
+qa.innerHTML=h;
+document.getElementById('resultsArea').innerHTML='';
+}
+
+window.selectChoice=function(qid,val){
+if(quizSubmitted)return;
+currentAnswers[qid]=val;
+document.querySelectorAll(`[data-qid="${qid}"]`).forEach(c=>{c.classList.remove('selected');if(c.dataset.val===val)c.classList.add('selected')});
+};
+
+window.submitQuiz=function(){
+if(quizSubmitted||!currentQuiz)return;quizSubmitted=true;
+let correct=0;const objScores={};
+
+currentQuiz.questions.forEach(q=>{
+const ans=currentAnswers[q.id]||'';
+const qEl=document.getElementById(`qq${q.id}`);
+const expEl=document.getElementById(`explain${q.id}`);
+let isCorrect=false;
+
+if(q.type==='mcq'){
+isCorrect=(ans===q.correct_answer);
+document.querySelectorAll(`[data-qid="${q.id}"]`).forEach(c=>{
+c.style.cursor='default';
+if(c.dataset.val===q.correct_answer)c.classList.add('correct-reveal');
+if(c.dataset.val===ans&&!isCorrect)c.classList.add('wrong-reveal');
+});
+}else{
+// For open questions, show correct answer
+isCorrect=ans.length>0;// Generous for open
+}
+
+if(isCorrect)correct++;
+qEl.classList.add(isCorrect?'correct':'wrong','answered');
+expEl.innerHTML=`<div class="quiz-explain ${isCorrect?'correct-bg':'wrong-bg'}">${isCorrect?'✓ Correct !':'✗ La bonne réponse : <b>'+q.correct_answer+'</b>'}<br>${q.explanation||''}</div>`;
+
+const oid=q.objective_id;
+if(!objScores[oid])objScores[oid]={correct:0,total:0};
+objScores[oid].total++;
+if(isCorrect)objScores[oid].correct++;
+});
+
+const pct=Math.round(correct/currentQuiz.questions.length*100);
+const scoreClass=pct>=80?'great':pct>=50?'ok':'needs-work';
+const msg=pct>=80?"Bravo, tu maîtrises ce chapitre ! 🎉":pct>=50?"Pas mal ! Revois les objectifs manqués.":"Continue à réviser, tu vas y arriver ! 💪";
+
+let rhtml=`<div class="results-card"><div class="results-score ${scoreClass}">${pct}%</div><div class="results-label">${correct}/${currentQuiz.questions.length} bonnes réponses</div><div class="results-msg">${msg}</div><div class="obj-results">`;
+currentQuiz.objectives.forEach((o,i)=>{
+const s=objScores[i];
+const pass=s&&s.correct>=s.total*0.5;
+rhtml+=`<div class="obj-result"><div class="obj-result-icon">${pass?'✅':'❌'}</div><div class="obj-result-text">${o}</div><div class="obj-result-score ${pass?'pass':'fail'}">${s?s.correct+'/'+s.total:'—'}</div></div>`;
+});
+rhtml+=`</div></div><div style="text-align:center"><button class="btn btn-ghost" onclick="resetQuiz()">Refaire le quiz</button></div>`;
+document.getElementById('resultsArea').innerHTML=rhtml;
+document.getElementById('btnSubmit').disabled=true;
+
+// Save score
+currentQuiz.bestScore=currentQuiz.bestScore?Math.max(currentQuiz.bestScore,pct):pct;
+const idx=qs.quizzes.findIndex(q=>q.id===currentQuiz.id);
+if(idx>=0){qs.quizzes[idx]=currentQuiz;svQ(qs)}
+renderHistory();
+if(pct>=80)boom();
+};
+
+window.resetQuiz=function(){
+if(!currentQuiz)return;currentAnswers={};quizSubmitted=false;
+renderQuiz(currentQuiz.questions,true);document.getElementById('resultsArea').innerHTML='';
+window.scrollTo({top:document.getElementById('quizArea').offsetTop-80,behavior:'smooth'});
+};
+
+function renderHistory(){
+const list=document.getElementById('historyList');if(!list)return;
+if(!qs.quizzes.length){list.innerHTML='<p style="color:var(--text-4);font-size:13px;padding:12px 0">Aucun quiz pour l\'instant. Colle ton cours ci-dessus pour commencer !</p>';return}
+list.innerHTML=qs.quizzes.slice().reverse().map(q=>`<div class="qh-item" onclick="loadQuiz(${q.id})"><div class="qh-title">${q.title}</div>${q.bestScore!==null?`<div class="qh-score">${q.bestScore}%</div>`:''}<div class="qh-date">${new Date(q.date).toLocaleDateString('fr-FR')}</div><div class="qh-actions"><button class="qh-btn delete" onclick="event.stopPropagation();deleteQuiz(${q.id})" title="Supprimer">×</button></div></div>`).join('');
+}
+
+window.loadQuiz=function(id){
+const q=qs.quizzes.find(x=>x.id===id);if(!q)return;
+currentQuiz=q;currentAnswers={};quizSubmitted=false;
+renderObjectives(q.objectives);renderQuiz(q.questions,true);
+window.scrollTo({top:document.getElementById('objArea').offsetTop-80,behavior:'smooth'});
+};
+
+window.deleteQuiz=function(id){
+qs.quizzes=qs.quizzes.filter(q=>q.id!==id);svQ(qs);renderHistory();
+};
+
+function hashStr(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0}return'h'+Math.abs(h)}
+
+// ======================================================================
+// INIT
+// ======================================================================
+if(qs.apiKey){document.getElementById('btnGenerate').disabled=document.getElementById('courseTa').value.length<50}
 </script>
 </body>
 </html>
